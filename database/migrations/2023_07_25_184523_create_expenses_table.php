@@ -15,6 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->bigInteger('value');
+            $table->date('duedate');
+            $table->enum('status', [
+                'NEW',
+                'PAID',
+                'DUEDATE'
+            ]);
             $table->timestamps();
         });
     }

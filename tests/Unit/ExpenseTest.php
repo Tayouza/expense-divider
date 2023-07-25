@@ -2,6 +2,8 @@
 
 namespace Tests\Unit;
 
+use App\Models\Expense;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -9,10 +11,13 @@ use Tests\TestCase;
 #[Group('expenses')]
 class ExpenseTest extends TestCase
 {
+    use RefreshDatabase;
+
     #[Test]
-    public function (): void
+    public function teste(): void
     {
-        $expense = new Expense;
+        $expense = Expense::factory()->create();
+        
         
         $this->assertTrue(true);
     }

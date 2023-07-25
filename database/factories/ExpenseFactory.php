@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Expense;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +20,8 @@ class ExpenseFactory extends Factory
         return [
             'name' => fake()->name(),
             'value' => rand(0, 100000000),
+            'duedate' => now(),
+            'status' => Expense::DUEDATE,
         ];
     }
 }

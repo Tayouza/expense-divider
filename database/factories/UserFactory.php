@@ -20,6 +20,7 @@ class UserFactory extends Factory
         return [
             'house_id' => null,
             'name' => fake()->name(),
+            'username' => fake()->username(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'income' => rand(0, 1000000),
