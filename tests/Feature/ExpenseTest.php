@@ -15,9 +15,8 @@ class ExpenseTest extends TestCase
     #[Test]
     public function when_accessing_should_return_success_response(): void
     {
-        $response = $this->get('/expense/list');
+        $response = $this->get('/dashboard');
 
-        // $response->assertViewIs('');
         $response->assertStatus(200);
     }
 }

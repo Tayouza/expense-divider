@@ -2,15 +2,21 @@
 
 namespace App\Models;
 
+use App\Models\Relations\ExpenseRelations;
+use App\Models\Traits\ExpenseMethods;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Expense extends Model
 {
     use HasFactory;
+    use ExpenseMethods;
+    use ExpenseRelations;
 
     const NEW = 'NEW';
+
     const DUEDATE = 'DUEDATE';
+
     const PAID = 'PAID';
 
     /**
@@ -19,6 +25,7 @@ class Expense extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'house_id',
         'name',
         'value',
         'duedate',

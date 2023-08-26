@@ -9,6 +9,27 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
+        <!-- Username -->
+        <div class="mt-4">
+            <x-input-label for="username" :value="__('Username')" />
+            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+        </div>
+
+        <!-- House code -->
+        <div class="mt-4">
+            <x-input-label for="house_code" :value="__('House Code')" />
+            <x-text-input id="house_code" class="block mt-1 w-full" type="text" name="house_code" :value="old('house_code')" autocomplete="house_code" />
+            <x-input-error :messages="$errors->get('house_code')" class="mt-2" />
+        </div>
+
+        <!-- Income -->
+        <div class="mt-4">
+            <x-input-label for="income" :value="__('Income')" />
+            <x-text-input id="income" class="block mt-1 w-full" type="text" name="income" :value="old('income')" required autocomplete="income" />
+            <x-input-error :messages="$errors->get('income')" class="mt-2" />
+        </div>
+
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
@@ -40,7 +61,7 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
+            <a class="underline text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-zinc-800" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
 

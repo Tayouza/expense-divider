@@ -14,12 +14,13 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(House::class)->nullable();
+            $table->foreignIdFor(House::class);
             $table->string('name');
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->bigInteger('income')->nullable();
+            $table->bigInteger('income')->default(0);
+            $table->integer('house_participation')->default(0);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
