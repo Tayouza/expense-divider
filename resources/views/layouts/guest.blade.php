@@ -31,12 +31,17 @@
                 {{ $slot }}
             </div>
         </div>
+        <script src="/js/jquery-3.7.0.min.js"></script>
+        <script src="/js/jquery.mask.js"></script>
         <script src="{{ asset('/sw.js') }}"></script>
         <script>
             if (!navigator.serviceWorker.controller) {
                 navigator.serviceWorker.register("/sw.js").then(function (reg) {
                     console.log("Service worker has been registered for scope: " + reg.scope);
                 });
+            }
+            function setMoneyMask(element) {
+                $(`#${element.id}`).mask('000.000.000.000,00', {reverse: true})
             }
         </script>
     </body>

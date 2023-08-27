@@ -55,7 +55,7 @@
 
         <div>
             <x-input-label for="income" :value="__('Income')" />
-            <x-text-input id="income" name="income" type="text" class="mt-1 block w-full" :value="old('income', $user->income)" required autofocus autocomplete="income" />
+            <x-text-input id="income" name="income" type="text" class="mt-1 block w-full" :value="old('income', number_format($user->income / 100, 2, ',', '.'))" onclick="setMoneyMask(this)" required autofocus autocomplete="income" />
             <x-input-error class="mt-2" :messages="$errors->get('income')" />
         </div>
 

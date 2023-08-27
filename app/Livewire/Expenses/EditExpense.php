@@ -24,7 +24,6 @@ class EditExpense extends ModalComponent
 
     protected $rules = [
         'name' => ['string'],
-        'value' => ['integer'],
         'duedate' => ['date'],
         'status' => ['string'],
     ];
@@ -33,7 +32,7 @@ class EditExpense extends ModalComponent
     {
         $this->expense = Expense::find($expenseId);
         $this->name = $this->expense->name;
-        $this->value = $this->expense->value;
+        $this->value = number_format($this->expense->value / 100, 2, ',', '.');
         $this->duedate = $this->expense->duedate->format('Y-m-d');
         $this->status = $this->expense->status;
 
@@ -48,10 +47,11 @@ class EditExpense extends ModalComponent
     public function editExpense()
     {
         $this->validate();
+        $value = str($this->value)->remove('.')->remove(',')->toInteger();
 
         $this->expense->update([
             'name' => $this->name,
-            'value' => $this->value,
+            'value' => $value,
             'duedate' => $this->duedate,
             'status' => $this->status,
         ]);

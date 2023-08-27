@@ -18,9 +18,10 @@ class AddExpense extends ModalComponent
 
     protected $rules = [
         'name' => ['required', 'string'],
-        'value' => ['required', 'integer'],
         'duedate' => ['required', 'date'],
     ];
+
+    protected $listerners = ['money' => 'setValue'];
 
     public function render()
     {
@@ -30,17 +31,16 @@ class AddExpense extends ModalComponent
     public function createExpense()
     {
         $this->validate();
-
+        
         $expense = app(Expense::class);
-
+        $value = str($this->value)->remove('.')->remove(',')->toInteger();
         $duedate = Carbon::parse($this->duedate);
-
         $status = $duedate->greaterThanOrEqualTo(today()) ? 'NEW' : 'DUEDATE';
-
+        
         $expense->create([
             'house_id' => auth()->user()->house->id,
             'name' => $this->name,
-            'value' => $this->value,
+            'value' => $value,
             'duedate' => $this->duedate,
             'status' => $status,
         ]);
@@ -48,4 +48,5 @@ class AddExpense extends ModalComponent
         $this->closeModal();
         $this->dispatch('refreshList');
     }
+
 }

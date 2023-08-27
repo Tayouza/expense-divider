@@ -1,5 +1,7 @@
 <div>
-    <button onclick="Livewire.dispatch('openModal', {component: 'expenses.add-expense'})">Adicionar despesa (+)</button>
+    <div class="mb-2">
+        <x-success-button onclick="Livewire.dispatch('openModal', {component: 'expenses.add-expense'})">{{ __('Add income') }} (+)</x-success-button>
+    </div>
     @if($expenses->isEmpty())
     Não há nenhuma despesa vinculada a sua casa, adicione uma!
     @else

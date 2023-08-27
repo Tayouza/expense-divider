@@ -26,7 +26,7 @@
         <!-- Income -->
         <div class="mt-4">
             <x-input-label for="income" :value="__('Income')" />
-            <x-text-input id="income" class="block mt-1 w-full" type="text" name="income" :value="old('income')" required autocomplete="income" />
+            <x-text-input id="income" class="block mt-1 w-full" type="text" name="income" onclick="setMoneyMask(this)" :value="old('income')" required autocomplete="income" />
             <x-input-error :messages="$errors->get('income')" class="mt-2" />
         </div>
 

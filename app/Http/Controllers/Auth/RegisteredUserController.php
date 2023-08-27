@@ -33,23 +33,28 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', 'alpha'],
             'house_code' => ['nullable', 'string', 'exists:houses,code'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'income' => ['required', 'integer'],
+            'income' => ['required', 'string'],
         ]);
 
-        $house = House::create([
-            'name' => $request->name,
-            'code' => $request->house_code ?? str()->password(12, symbols: false),
-        ]);
+        if ($request->house_code) {
+            $house = House::where('code', $request->house_code)
+                ->first();
+        } else {
+            $house = House::create([
+                'name' => $request->name,
+                'code' => str()->password(12, symbols: false),
+            ]);
+        }
 
         $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
             'house_id' => $house->id,
-            'income' => $request->income,
+            'income' => str($request->income)->remove(',')->remove('.')->toInteger(),
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

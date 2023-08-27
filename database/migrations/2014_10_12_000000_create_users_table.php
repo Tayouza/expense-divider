@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->bigInteger('income')->default(0);
+            $table->bigInteger('income')->default(1000);
             $table->integer('house_participation')->default(0);
             $table->string('password');
             $table->rememberToken();
