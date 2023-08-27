@@ -28,7 +28,18 @@
                         R$ {{ number_format($expense->value / 100, 2, ',', '.') }}
                     </td>
                     <td class="border p-2 text-center">{{ $expense->duedate->format('d/m/Y') }}</td>
-                    <td class="border p-2 text-center">{{ $expense->status }}</td>
+                    <td class="border p-2 text-center">
+                        @php
+                            $status = match($expense->status) {
+                                App\Enums\ExpenseStatus::NEW->name => 'status-blue',
+                                App\Enums\ExpenseStatus::PAID->name => 'status-green',
+                                App\Enums\ExpenseStatus::DUEDATE->name => 'status-red',
+                            };
+                        @endphp
+                        <span class="{{ $status }}">
+                            {{ __($expense->status) }}
+                        </span>
+                    </td>
                     <td class="border p-2 text-center">{{ $expense->created_at->format('d/m/Y') }}</td>
                     @foreach ($houseUsers as $houseUser)
                     <td class="border p-2 text-center">R$ {{ number_format($expense->getValueToPayForUser($houseUser) / 100, 2, ',', '.') }}</td>
