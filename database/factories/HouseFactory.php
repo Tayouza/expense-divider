@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\House>
@@ -19,7 +18,7 @@ class HouseFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'code' => Str::password(10, symbols: false),
+            'code' => str()->password(10, symbols: false),
         ];
     }
 }

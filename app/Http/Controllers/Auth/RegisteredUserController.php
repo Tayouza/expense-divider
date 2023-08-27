@@ -11,7 +11,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
@@ -43,7 +42,7 @@ class RegisteredUserController extends Controller
 
         $house = House::create([
             'name' => $request->name,
-            'code' => $request->house_code ?? Str::password(12, symbols: false),
+            'code' => $request->house_code ?? str()->password(12, symbols: false),
         ]);
 
         $user = User::create([

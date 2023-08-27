@@ -31,7 +31,10 @@
                     @foreach ($houseUsers as $houseUser)
                     <td class="border p-2 text-center">R$ {{ number_format($expense->getValueToPayForUser($houseUser) / 100, 2, ',', '.') }}</td>
                     @endforeach
-                    <td class="border p-2 text-center"></td>
+                    <td class="border p-2 text-center">
+                        <x-primary-button onclick="Livewire.dispatch('openModal', {component: 'expenses.edit-expense', arguments: {expenseId: {{ $expense->id }}}})">Editar</x-primary-button>
+                        <x-danger-button onclick="Livewire.dispatch('openModal', {component: 'expenses.delete-expense', arguments: {expenseId: {{ $expense->id }}}})">Excluir</x-danger-button>
+                    </td>
                 </tr>
                 @endforeach
                 <tr>
@@ -45,7 +48,6 @@
                     @foreach ($houseUsers as $houseUser)
                     <td class="border p-2 text-center">R$ {{ number_format($houseUser->getTotalExpensesToPay() / 100, 2, ',', '.') }}</td>
                     @endforeach
-                    <td class="border-r p-2 text-center"></td>
                 </tr>
             </tbody>
         </table>
