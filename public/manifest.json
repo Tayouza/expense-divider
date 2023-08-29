@@ -1,11 +1,11 @@
 {
-    "name": "Laravel Package Tutorial",
-    "short_name": "LPT",
+    "name": "Despesas Dividas",
+    "short_name": "Despesas Dividas",
     "start_url": "/index.php",
-    "background_color": "#6777ef",
-    "description": "Tutorial of Laravel Package",
+    "background_color": "#18181b",
+    "description": "App para dividir despesas de casa",
     "display": "fullscreen",
-    "theme_color": "#6777ef",
+    "theme_color": "#18181b",
     "icons": [
         {
             "src": "logo.PNG",
