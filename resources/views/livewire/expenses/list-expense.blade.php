@@ -15,7 +15,7 @@
                     <th class="border p-2">Status</th>
                     <th class="border p-2">Adicionada em</th>
                     @foreach ($houseUsers as $houseUser)
-                    <th class="border p-2 text-center">{{ $houseUser->name }}</th>
+                    <th class="border p-2 text-center">{{ $houseUser->name }} <em class="text-sm font-thin">({{ $houseUser->house_participation }}%)</em></th>
                     @endforeach
                     <th class="border p-2">Ações</th>
                 </tr>
