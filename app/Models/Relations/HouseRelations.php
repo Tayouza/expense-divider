@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Relations;
 
-use App\Models\Expense;
+use App\Models\ExpenseList;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -15,8 +15,8 @@ trait HouseRelations
         return $this->hasMany(User::class);
     }
 
-    public function expenses(): HasMany
+    public function expenselist(): HasMany
     {
-        return $this->hasMany(Expense::class);
+        return $this->hasMany(ExpenseList::class);
     }
 }

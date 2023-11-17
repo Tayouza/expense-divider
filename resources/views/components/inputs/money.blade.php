@@ -17,7 +17,7 @@
     }
 }">
     <span @class(['text-red-500' => $hasError])>{{ $label }}</span>
-    <input {{ $disabled ? 'disabled' : '' }} id="{{ $id }}" onclick="setMoneyMask(this)" x-bind:value="@this.{{ $wireModel }}" x-on:change="@this.{{ $wireModel }} = getValue()" type="text" @class([$classes, '!text-red-500' => $hasError]) >
+    <input {{ $disabled ? 'disabled' : '' }} id="{{ $id }}" onfocus="setMoneyMask(this)" x-bind:value="@this.{{ $wireModel }}" x-on:change="@this.{{ $wireModel }} = getValue()" type="text" @class([$classes, '!text-red-500' => $hasError]) >
     @error($wireModel)
         <span class="text-red-500">{{ $message }}</span>
     @enderror

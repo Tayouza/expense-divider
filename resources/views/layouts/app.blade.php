@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,10 +20,11 @@
         @livewireStyles
         
         <!-- Scripts -->
+        <wireui:scripts />
         @vite(['resources/js/app.js', 'resources/css/app.css'])
-        {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     </head>
     <body class="font-sans antialiased">
+        <x-notifications z-index="z-50" />
         <div class="min-h-screen bg-zinc-100 dark:bg-zinc-900">
             @include('layouts.navigation')
 

@@ -10,7 +10,7 @@ use LivewireUI\Modal\ModalComponent;
 
 class EditExpense extends ModalComponent
 {
-    public $expense;
+    public Expense $expense;
 
     public $name;
 

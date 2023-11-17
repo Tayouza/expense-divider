@@ -16,6 +16,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@alpinejs/focus": "^3.12.3"
+        "@alpinejs/focus": "^3.12.3",
+        "tw-elements": "^1.0.0"
     }
 }

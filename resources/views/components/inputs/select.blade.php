@@ -16,7 +16,7 @@
     <span @class(['text-red-500' => $hasError])>{{ $label }}</span>
     <select {{ $disabled ? 'disabled' : '' }} id="{{ $id }}" {{ $attributes }} type="text" @class([$classes, '!text-red-500' => $hasError])d>
         @foreach ($options as $option)
-            <option value="{{ $option }}">{{ $option }}</option>
+            <option value="{{ $option }}">{{ __($option) }}</option>
         @endforeach
     </select>
     @error($wireModel)

@@ -6,11 +6,14 @@ namespace App\Models\Traits;
 
 trait UserMethods
 {
-    public function getTotalExpensesToPay(): float
+    public function getTotalExpensesToPay(int $expenseLisIid): float
     {
-        $expenses = $this->house
-            ->expenses;
+        $expenseList = $this->house
+            ->expenseList
+            ->where('id', $expenseLisIid)
+            ->first();
 
+        $expenses = $expenseList->expenses;
         $totalExpenses = $expenses->sum('value');
 
         return $totalExpenses * ($this->house_participation / 100);

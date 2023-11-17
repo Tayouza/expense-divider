@@ -25,7 +25,8 @@ class Expense extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'house_id',
+        'user_id',
+        'expense_list_id',
         'name',
         'value',
         'duedate',

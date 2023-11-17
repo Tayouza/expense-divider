@@ -9,8 +9,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-zinc-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-zinc-900 dark:text-zinc-100">
-                    <h2 class="text-3xl font-bold pb-2">{{ $house->name }}</h2>
-                    <livewire:expenses.list-expense />
+                    <div class="flex justify-between">
+                        <h2 class="text-3xl font-bold pb-2">{{ $house->name }}</h2>
+                        <x-success-button onclick="Livewire.dispatch('openModal', {component: 'expense-list.create-expense-list'})"
+                            data-te-toggle="tooltip" title="{{ __('Add list') }}">(+)</x-success-button>
+                    </div>
+                    <livewire:expense-list.list-expense-list />
                 </div>
             </div>
         </div>

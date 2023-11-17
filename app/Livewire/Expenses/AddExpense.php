@@ -6,22 +6,26 @@ namespace App\Livewire\Expenses;
 
 use App\Models\Expense;
 use Carbon\Carbon;
+use Livewire\Attributes\Locked;
 use LivewireUI\Modal\ModalComponent;
 
 class AddExpense extends ModalComponent
 {
+    #[Locked]
+    public int $expenseListId;
+
     public $name;
 
     public $value;
 
     public $duedate;
 
-    protected $rules = [
-        'name' => ['required', 'string'],
-        'duedate' => ['required', 'date'],
-    ];
-
     protected $listerners = ['money' => 'setValue'];
+
+    public function mount($expenseListId)
+    {
+        $this->expenseListId = $expenseListId;
+    }
 
     public function render()
     {
@@ -30,15 +34,17 @@ class AddExpense extends ModalComponent
 
     public function createExpense()
     {
-        $this->validate();
-        
-        $expense = app(Expense::class);
+        $this->validate([
+            'name' => 'required|string',
+            'duedate' => 'required|date',
+        ]);
+
         $value = str($this->value)->remove('.')->remove(',')->toInteger();
         $duedate = Carbon::parse($this->duedate);
         $status = $duedate->greaterThanOrEqualTo(today()) ? 'NEW' : 'DUEDATE';
-        
-        $expense->create([
-            'house_id' => auth()->user()->house->id,
+
+        Expense::create([
+            'expense_list_id' => $this->expenseListId,
             'name' => $this->name,
             'value' => $value,
             'duedate' => $this->duedate,
@@ -48,5 +54,4 @@ class AddExpense extends ModalComponent
         $this->closeModal();
         $this->dispatch('refreshList');
     }
-
 }
