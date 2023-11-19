@@ -6,10 +6,15 @@ namespace App\Livewire\Expenses;
 
 use App\Enums\ExpenseStatus;
 use App\Models\Expense;
+use Livewire\Attributes\Locked;
 use LivewireUI\Modal\ModalComponent;
+use WireUi\Traits\Actions;
 
 class EditExpense extends ModalComponent
 {
+    use Actions;
+
+    #[Locked]
     public Expense $expense;
 
     public $name;
@@ -58,5 +63,6 @@ class EditExpense extends ModalComponent
 
         $this->closeModal();
         $this->dispatch('refreshList');
+        $this->notification()->success('Editada', 'Despesa editada com sucesso');
     }
 }

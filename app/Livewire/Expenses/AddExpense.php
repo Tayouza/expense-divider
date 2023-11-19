@@ -8,9 +8,12 @@ use App\Models\Expense;
 use Carbon\Carbon;
 use Livewire\Attributes\Locked;
 use LivewireUI\Modal\ModalComponent;
+use WireUi\Traits\Actions;
 
 class AddExpense extends ModalComponent
 {
+    use Actions;
+
     #[Locked]
     public int $expenseListId;
 
@@ -53,5 +56,6 @@ class AddExpense extends ModalComponent
 
         $this->closeModal();
         $this->dispatch('refreshList');
+        $this->notification()->success('Sucesso', 'Despesa adicionada à lista com sucesso!');
     }
 }

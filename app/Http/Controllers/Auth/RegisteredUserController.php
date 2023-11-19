@@ -40,8 +40,14 @@ class RegisteredUserController extends Controller
             'income' => ['required', 'string'],
         ]);
 
-        if ($request->house_code) {
-            $house = House::where('code', $request->house_code)
+        $houseCode = $request->house_code;
+
+        if ($houseCode) {
+            if (str_contains($houseCode, '#')) {
+                $houseCode = str_replace('#', '', $houseCode);
+            }
+
+            $house = House::where('code', $houseCode)
                 ->first();
         } else {
             $house = House::create([
