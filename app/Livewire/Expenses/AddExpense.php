@@ -23,6 +23,8 @@ class AddExpense extends ModalComponent
 
     public $duedate;
 
+    public $personal = false;
+
     protected $listerners = ['money' => 'setValue'];
 
     public function mount($expenseListId)
@@ -40,6 +42,7 @@ class AddExpense extends ModalComponent
         $this->validate([
             'name' => 'required|string',
             'duedate' => 'required|date',
+            'personal' => 'boolean',
         ]);
 
         $value = str($this->value)->remove('.')->remove(',')->toInteger();
@@ -48,6 +51,7 @@ class AddExpense extends ModalComponent
 
         Expense::create([
             'expense_list_id' => $this->expenseListId,
+            'user_id' => $this->personal ? auth()->user()->id : null,
             'name' => $this->name,
             'value' => $value,
             'duedate' => $this->duedate,

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\Traits;
 
+use App\Models\Expense;
+
 trait UserMethods
 {
     public function getTotalExpensesToPay(int $expenseLisIid): float
@@ -13,9 +15,23 @@ trait UserMethods
             ->where('id', $expenseLisIid)
             ->first();
 
-        $expenses = $expenseList->expenses;
-        $totalExpenses = $expenses->sum('value');
+        $expenses = $expenseList->expenses->map(function(Expense $expense){
+            if ($expense->user_id === null) {
+                return $expense;
+            }
+        });
 
-        return $totalExpenses * ($this->house_participation / 100);
+        $totalExpenses = $expenses->sum('value') * ($this->house_participation / 100);
+
+        $expenses = $expenseList->expenses->map(function(Expense $expense){
+            if ($expense->user_id === $this->id) {
+                return $expense;
+            }
+        });
+
+        $totalPersonalExpenses = $expenses->sum('value');
+
+
+        return $totalExpenses + $totalPersonalExpenses;
     }
 }

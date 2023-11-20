@@ -26,9 +26,9 @@
             <tbody>
                 @foreach($expenses as $expense)
                 <tr>
-                    <td class="border p-2">{{ $expense->name }}</td>
+                    <td class="border p-2">{{ $expense->name }} <span class="opacity-50 text-xs">{{ $expense->user?->username ? '(' . $expense->user->username . ')' : '' }}</span></td>
                     <td class="border p-2 text-center">
-                        {{ __('country_currency') }} {{ number_format($expense->value / 100, 2, ',', '.') }}
+                        {{ __('USD') }} {{ number_format($expense->value / 100, 2, ',', '.') }}
                     </td>
                     <td class="border p-2 text-center">{{ $expense->duedate->format('d/m/Y') }}</td>
                     <td class="border p-2 text-center">
@@ -45,37 +45,50 @@
                     </td>
                     <td class="border p-2 text-center">{{ $expense->created_at->format('d/m/Y') }}</td>
                     @foreach ($houseUsers as $houseUser)
-                    <td class="border p-2 text-center">{{ __('country_currency') }} {{ number_format($expense->getValueToPayForUser($houseUser) / 100, 2, ',', '.') }}</td>
+                    @php
+                        $expenseUser = $expense->getValueToPayForUser($houseUser);
+                    @endphp
+                    <td class="border p-2 text-center">{{ $expenseUser === 0 ? '-' : __('USD')  . number_format($expenseUser / 100, 2, ',', '.') }}</td>
                     @endforeach
                     <td class="border p-2 text-center">
-                        <x-primary-button onclick="Livewire.dispatch('openModal', {component: 'expenses.edit-expense', arguments: {expenseId: {{ $expense->id }}}})">{{ __('Edit') }}</x-primary-button>
-                        <x-danger-button onclick="Livewire.dispatch('openModal', {component: 'expenses.delete-expense', arguments: {expenseId: {{ $expense->id }}}})">{{ __('Delete') }}</x-danger-button>
+                        @if ($expense->user_id === null || $expense->user_id === auth()->user()->id )
+                            <x-primary-button onclick="Livewire.dispatch('openModal', {component: 'expenses.edit-expense', arguments: {expenseId: {{ $expense->id }}}})"
+                                data-te-toggle="tooltip"
+                                title="{{ __('Edit') }}" >
+                                    <x-icon name="pencil" class="w-4 h-4"/>
+                            </x-primary-button>
+                            <x-danger-button onclick="Livewire.dispatch('openModal', {component: 'expenses.delete-expense', arguments: {expenseId: {{ $expense->id }}}})"
+                                data-te-toggle="tooltip"
+                                title="{{ __('Delete') }}" >
+                                    <x-icon name="trash" class="w-4 h-4" />
+                            </x-danger-button>
+                        @endif
                     </td>
                 </tr>
                 @endforeach
                 <tr>
                     <td class="border p-2">{{__ ('Total') }}</td>
                     <td class="border p-2 text-center">
-                        {{ __('country_currency') }} {{ number_format($expenses->sum('value') / 100, 2, ',', '.') }}
+                        {{ __('USD') }} {{ number_format($expenses->sum('value') / 100, 2, ',', '.') }}
                     </td>
                     <td class="border-l p-2 text-center"></td>
                     <td class="p-2 text-center"></td>
                     <td class="border-r p-2 text-center"></td>
                     @foreach ($houseUsers as $houseUser)
-                    <td class="border p-2 text-center">{{ __('country_currency') }} {{ number_format($houseUser->getTotalExpensesToPay($expenseListId) / 100, 2, ',', '.') }}</td>
+                    <td class="border p-2 text-center">{{ __('USD') }} {{ number_format($houseUser->getTotalExpensesToPay($expenseListId) / 100, 2, ',', '.') }}</td>
                     @endforeach
                 </tr>
             </tbody>
                 <tr>
                     <td class="border p-2">{{ __('Valor restante') }}</td>
                     <td class="border p-2 text-center">
-                        {{ __('country_currency') }} {{ number_format(($houseUsers->sum('income') - $expenses->sum('value'))/ 100, 2, ',', '.') }}
+                        {{ __('USD') }} {{ number_format(($houseUsers->sum('income') - $expenses->sum('value'))/ 100, 2, ',', '.') }}
                     </td>
                     <td class="border-l p-2 text-center"></td>
                     <td class="p-2 text-center"></td>
                     <td class="border-r p-2 text-center"></td>
                     @foreach ($houseUsers as $houseUser)
-                    <td class="border p-2 text-center">{{ __('country_currency') }} {{ number_format(($houseUser->income - $houseUser->getTotalExpensesToPay($expenseListId)) / 100, 2, ',', '.') }}</td>
+                    <td class="border p-2 text-center">{{ __('USD') }} {{ number_format(($houseUser->income - $houseUser->getTotalExpensesToPay($expenseListId)) / 100, 2, ',', '.') }}</td>
                     @endforeach
                 </tr>
             </tbody>
