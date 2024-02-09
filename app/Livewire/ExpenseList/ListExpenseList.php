@@ -13,7 +13,7 @@ class ListExpenseList extends Component
 
     public function render()
     {
-        $expenseLists = ExpenseList::all();
+        $expenseLists = ExpenseList::orderByDesc('created_at')->get();
 
         return view('livewire.expense-list.list-expense-list', [
             'expenseLists' => $expenseLists,

@@ -5,6 +5,7 @@
         <x-inputs.money :label="__('Value')" name="value" wire:model="value" />
         <x-inputs.date :label="__('Duedate')" name="duedate" wire:model="duedate" />
         <x-inputs.select :label="__('Status')" name="status" wire:model="status" :options="$expenseStatus"/>
+        <x-toggle :label="__('Personal')" wire:model.defer="personal"  />
         <div class="flex justify-end">
             <x-secondary-button type="submit">{{ __('Edit') }}</x-secondary-button>
         </div>

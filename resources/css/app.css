@@ -35,3 +35,5 @@
         @apply bg-gray-700 p-1 mt-1 border border-gray-900 text-white text-xs;
     }
 }
+
+[x-cloak] { display: none !important; }
