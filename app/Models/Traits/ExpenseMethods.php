@@ -17,7 +17,7 @@ trait ExpenseMethods
 
             return 0;
         }
-        
+
         $houseParticipation = $user->house_participation;
 
         return $this->value * ($houseParticipation / 100);

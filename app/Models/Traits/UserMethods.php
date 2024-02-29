@@ -15,7 +15,7 @@ trait UserMethods
             ->where('id', $expenseLisIid)
             ->first();
 
-        $expenses = $expenseList->expenses->map(function(Expense $expense){
+        $expenses = $expenseList->expenses->map(function (Expense $expense) {
             if ($expense->user_id === null) {
                 return $expense;
             }
@@ -23,14 +23,13 @@ trait UserMethods
 
         $totalExpenses = $expenses->sum('value') * ($this->house_participation / 100);
 
-        $expenses = $expenseList->expenses->map(function(Expense $expense){
+        $expenses = $expenseList->expenses->map(function (Expense $expense) {
             if ($expense->user_id === $this->id) {
                 return $expense;
             }
         });
 
         $totalPersonalExpenses = $expenses->sum('value');
-
 
         return $totalExpenses + $totalPersonalExpenses;
     }

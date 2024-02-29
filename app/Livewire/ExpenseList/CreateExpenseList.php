@@ -32,6 +32,7 @@ class CreateExpenseList extends ModalComponent
 
         $this->closeModal();
         $this->dispatch('refreshList');
+        $this->dispatch('refreshDashboard');
         $this->notification()->success('Sucesso', 'Lista criada com sucesso!');
     }
 }

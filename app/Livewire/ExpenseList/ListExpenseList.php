@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class ListExpenseList extends Component
 {
-    protected $listeners = ['refreshList' => '$refresh'];
+    protected $listeners = ['refreshDashboard' => '$refresh'];
 
     public function render()
     {

@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Expense extends Model
 {
-    use HasFactory;
     use ExpenseMethods;
     use ExpenseRelations;
+    use HasFactory;
 
     const NEW = 'NEW';
 

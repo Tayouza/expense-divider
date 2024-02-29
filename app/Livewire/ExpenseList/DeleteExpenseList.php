@@ -35,6 +35,7 @@ class DeleteExpenseList extends ModalComponent
 
             $this->closeModal();
             $this->dispatch('refreshList');
+            $this->dispatch('refreshDashboard');
             $this->notification()->success('Deletado', 'Lista deletado com sucesso');
         } else {
             $this->closeModal();

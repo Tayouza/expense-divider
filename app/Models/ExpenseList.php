@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExpenseList extends Model
 {
-    use HasFactory;
     use ExpenseListRelations;
+    use HasFactory;
 
     protected $fillable = [
         'name',
