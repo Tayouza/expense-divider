@@ -51,18 +51,16 @@
                     <td class="border p-2 text-center">{{ $expenseUser === 0 ? '-' : __('USD')  . number_format($expenseUser / 100, 2, ',', '.') }}</td>
                     @endforeach
                     <td class="border p-2 text-center">
-                        @if ($expense->user_id === null || $expense->user_id === auth()->user()->id )
-                            <x-primary-button onclick="Livewire.dispatch('openModal', {component: 'expenses.edit-expense', arguments: {expenseId: {{ $expense->id }}}})"
-                                data-te-toggle="tooltip"
-                                title="{{ __('Edit') }}" >
-                                    <x-icon name="pencil" class="w-4 h-4"/>
-                            </x-primary-button>
-                            <x-danger-button onclick="Livewire.dispatch('openModal', {component: 'expenses.delete-expense', arguments: {expenseId: {{ $expense->id }}}})"
-                                data-te-toggle="tooltip"
-                                title="{{ __('Delete') }}" >
-                                    <x-icon name="trash" class="w-4 h-4" />
-                            </x-danger-button>
-                        @endif
+                        <x-primary-button onclick="Livewire.dispatch('openModal', {component: 'expenses.edit-expense', arguments: {expenseId: {{ $expense->id }}}})"
+                            data-te-toggle="tooltip"
+                            title="{{ __('Edit') }}" >
+                                <x-icon name="pencil" class="w-4 h-4"/>
+                        </x-primary-button>
+                        <x-danger-button onclick="Livewire.dispatch('openModal', {component: 'expenses.delete-expense', arguments: {expenseId: {{ $expense->id }}}})"
+                            data-te-toggle="tooltip"
+                            title="{{ __('Delete') }}" >
+                                <x-icon name="trash" class="w-4 h-4" />
+                        </x-danger-button>
                     </td>
                 </tr>
                 @endforeach

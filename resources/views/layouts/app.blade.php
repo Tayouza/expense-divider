@@ -54,6 +54,18 @@
             function setMoneyMask(element) {
                 $(`#${element.id}`).mask('000.000.000.000,00', {reverse: true})
             }
+            function changeChecked(element) {
+                const users = document.querySelectorAll('.users');
+                users.forEach((user) => {
+                    if (user.id !== element.id && element.checked) {
+                        user.setAttribute('disabled', true);
+                        document.querySelector('[for="' + user.id + '"]').classList.add('line-through');
+                    } else {
+                        user.removeAttribute('disabled');
+                        document.querySelector('[for="' + user.id + '"]').classList.remove('line-through');
+                    }
+                });
+            }
         </script>
         @livewireScriptConfig
         @livewire('wire-elements-modal')

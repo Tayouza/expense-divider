@@ -6,6 +6,7 @@ namespace App\Livewire\Expenses;
 
 use App\Enums\ExpenseStatus;
 use App\Models\Expense;
+use App\Models\User;
 use Livewire\Attributes\Locked;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
@@ -17,6 +18,9 @@ class EditExpense extends ModalComponent
     #[Locked]
     public Expense $expense;
 
+    #[Locked]
+    public $users;
+
     public $name;
 
     public $value;
@@ -25,7 +29,7 @@ class EditExpense extends ModalComponent
 
     public $status;
 
-    public $personal;
+    public $selectedUsers = [];
 
     public $expenseStatus;
 
@@ -39,10 +43,11 @@ class EditExpense extends ModalComponent
     {
         $this->expense = Expense::find($expenseId);
         $this->name = $this->expense->name;
-        $this->personal = $this->expense->user_id !== null;
+        $this->selectedUsers = [$this->expense->user_id];
         $this->value = number_format($this->expense->value / 100, 2, ',', '.');
         $this->duedate = $this->expense->duedate->format('Y-m-d');
         $this->status = $this->expense->status;
+        $this->users = User::select(['id', 'name'])->where('house_id', auth()->user()->house_id)->get();
 
         $this->expenseStatus = ExpenseStatus::names();
     }
@@ -56,11 +61,12 @@ class EditExpense extends ModalComponent
     {
         $this->validate();
         $value = str($this->value)->remove('.')->remove(',')->toInteger();
+        $selectedUserId = ! empty($this->selectedUsers) ? $this->selectedUsers[0] : null;
 
         $this->expense->update([
             'name' => $this->name,
             'value' => $value,
-            'user_id' => $this->personal ? auth()->user()->id : null,
+            'user_id' => $selectedUserId,
             'duedate' => $this->duedate,
             'status' => $this->status,
         ]);
