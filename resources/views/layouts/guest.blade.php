@@ -16,7 +16,11 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <!-- Styles -->
+        @livewireStyles
+
         <!-- Scripts -->
+        <wireui:scripts />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-zinc-900 antialiased">
@@ -44,5 +48,6 @@
                 $(`#${element.id}`).mask('000.000.000.000,00', {reverse: true})
             }
         </script>
+        @livewireScriptConfig
     </body>
 </html>
