@@ -15,6 +15,10 @@ trait UserMethods
             ->where('id', $expenseLisIid)
             ->first();
 
+        if (!$expenseList) {
+            return 0;
+        }
+
         $expenses = $expenseList->expenses->map(function (Expense $expense) {
             if ($expense->user_id === null) {
                 return $expense;
