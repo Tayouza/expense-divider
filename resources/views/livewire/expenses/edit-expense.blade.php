@@ -8,7 +8,14 @@
         <div>
             <span class="text-xs"><i>Quem pertence essa despesa: (deixe vazio para todos)</i></span>
             @foreach ($users as $user)
-                @if($this->expense->user_id === $user->id)
+                @if(!$this->expense->user_id)
+                <div class="flex gap-2 items-center">
+                    <input type="checkbox" onchange="changeChecked(this)"
+                        class="users checkbox" id="user-{{ $user->id }}" value="{{ $user->id }}"
+                        wire:model.defer="selectedUsers" />
+                    <label for="user-{{ $user->id }}" class="block text-sm font-medium text-gray-700 dark:text-gray-400">{{ $user->name }}</label>
+                </div>
+                @elseif($this->expense->user_id === $user->id)
                 <div class="flex gap-2 items-center">
                     <input type="checkbox" onchange="changeChecked(this)" checked
                         class="users checkbox line-through" id="user-{{ $user->id }}" value="{{ $user->id }}"
