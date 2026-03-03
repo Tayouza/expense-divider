@@ -40,7 +40,7 @@ class RenameExpenseList extends ModalComponent
         ]);
 
         $this->closeModal();
-        $this->notification()->success('Renomeado', "A lista foi renomeada para {$this->name}");
+        $this->notification()->success('Renomeado', 'A lista foi renomeada para '.$this->name);
         $this->dispatch('refreshExpenseList');
     }
 }
