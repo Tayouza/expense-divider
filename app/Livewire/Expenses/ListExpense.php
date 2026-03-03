@@ -16,12 +16,12 @@ class ListExpense extends Component
 
     protected $listeners = ['refreshList' => '$refresh'];
 
-    public function mount(int $expenseListId)
+    public function mount(int $expenseListId): void
     {
         $this->expenseListId = $expenseListId;
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $houseId = auth()->user()->house_id;
         $houseUsers = User::where('house_id', $houseId)->get();

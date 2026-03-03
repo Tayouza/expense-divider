@@ -14,12 +14,12 @@ class CreateExpenseList extends ModalComponent
 
     public $name;
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('livewire.expense-list.create-expense-list');
     }
 
-    public function createExpenseList()
+    public function createExpenseList(): void
     {
         $this->validate([
             'name' => 'required|string',

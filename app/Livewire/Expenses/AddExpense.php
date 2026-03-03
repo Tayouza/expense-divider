@@ -31,18 +31,18 @@ class AddExpense extends ModalComponent
 
     protected $listerners = ['money' => 'setValue'];
 
-    public function mount($expenseListId)
+    public function mount(int $expenseListId): void
     {
         $this->expenseListId = $expenseListId;
         $this->users = User::select(['id', 'name'])->where('house_id', auth()->user()->house_id)->get();
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('livewire.expenses.add-expense');
     }
 
-    public function createExpense()
+    public function createExpense(): void
     {
         $this->validate([
             'name' => 'required|string',
@@ -53,7 +53,7 @@ class AddExpense extends ModalComponent
         $value = str($this->value)->remove('.')->remove(',')->toInteger();
         $duedate = Carbon::parse($this->duedate);
         $status = $duedate->greaterThanOrEqualTo(today()) ? 'NEW' : 'DUEDATE';
-        $selectedUserId = ! empty($this->selectedUsers) ? $this->selectedUsers[0] : null;
+        $selectedUserId = empty($this->selectedUsers) ? null : $this->selectedUsers[0];
 
         Expense::create([
             'expense_list_id' => $this->expenseListId,

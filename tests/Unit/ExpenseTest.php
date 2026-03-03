@@ -16,7 +16,7 @@ class ExpenseTest extends TestCase
     #[Test]
     public function teste(): void
     {
-        $expense = Expense::factory()->create();
+        Expense::factory()->create();
 
         $this->assertTrue(true);
     }

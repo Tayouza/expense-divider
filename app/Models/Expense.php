@@ -36,9 +36,13 @@ class Expense extends Model
     /**
      * The attributes that should be cast.
      *
-     * @var array<string, string>
+     * @return array<string, string>
      */
-    protected $casts = [
-        'duedate' => 'date',
-    ];
+    #[\Override]
+    protected function casts(): array
+    {
+        return [
+            'duedate' => 'date',
+        ];
+    }
 }

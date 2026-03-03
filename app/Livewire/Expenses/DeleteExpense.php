@@ -16,17 +16,17 @@ class DeleteExpense extends ModalComponent
     #[Locked]
     public Expense $expense;
 
-    public function mount(int $expenseId)
+    public function mount(int $expenseId): void
     {
         $this->expense = Expense::findOrFail($expenseId);
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('livewire.expenses.delete-expense');
     }
 
-    public function deleteExpense()
+    public function deleteExpense(): void
     {
         Expense::find($this->expense->id)->delete();
 

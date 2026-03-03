@@ -11,7 +11,7 @@ class ListExpenseList extends Component
 {
     protected $listeners = ['refreshDashboard' => '$refresh'];
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $expenseLists = ExpenseList::orderByDesc('created_at')
             ->where('house_id', auth()->user()->house_id)

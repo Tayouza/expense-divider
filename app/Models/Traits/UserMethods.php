@@ -15,7 +15,7 @@ trait UserMethods
             ->where('id', $expenseLisIid)
             ->first();
 
-        if (!$expenseList) {
+        if (! $expenseList) {
             return 0;
         }
 

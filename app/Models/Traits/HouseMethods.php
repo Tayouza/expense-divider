@@ -14,7 +14,7 @@ trait HouseMethods
         $usersInHouse = $this->users;
         $totalIncome = $this->getTotalIncomeHouse();
 
-        $usersInHouse->map(function (User $user) use ($totalIncome) {
+        $usersInHouse->map(function (User $user) use ($totalIncome): void {
             $houseParticipation = Helpers::ruleOfThree($user->income, $totalIncome);
             $user->house_participation = round($houseParticipation, mode: PHP_ROUND_HALF_DOWN);
 

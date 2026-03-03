@@ -19,7 +19,7 @@ class ExpenseFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'value' => rand(0, 100000000),
+            'value' => random_int(0, 100000000),
             'duedate' => now(),
             'status' => Expense::DUEDATE,
         ];

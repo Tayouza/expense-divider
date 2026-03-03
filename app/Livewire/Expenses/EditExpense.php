@@ -39,7 +39,7 @@ class EditExpense extends ModalComponent
         'status' => ['string'],
     ];
 
-    public function mount(int $expenseId)
+    public function mount(int $expenseId): void
     {
         $this->expense = Expense::find($expenseId);
         $this->name = $this->expense->name;
@@ -52,16 +52,16 @@ class EditExpense extends ModalComponent
         $this->expenseStatus = ExpenseStatus::names();
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('livewire.expenses.edit-expense');
     }
 
-    public function editExpense()
+    public function editExpense(): void
     {
         $this->validate();
         $value = str($this->value)->remove('.')->remove(',')->toInteger();
-        $selectedUserId = ! empty($this->selectedUsers) ? $this->selectedUsers[0] : null;
+        $selectedUserId = empty($this->selectedUsers) ? null : $this->selectedUsers[0];
 
         $this->expense->update([
             'name' => $this->name,

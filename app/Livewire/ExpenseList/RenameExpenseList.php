@@ -18,18 +18,18 @@ class RenameExpenseList extends ModalComponent
 
     public $name;
 
-    public function mount(int $expenseListId)
+    public function mount(int $expenseListId): void
     {
         $this->expenseList = ExpenseList::find($expenseListId);
         $this->name = $this->expenseList->name;
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('livewire.expense-list.rename-expense-list');
     }
 
-    public function renameExpenseList()
+    public function renameExpenseList(): void
     {
         $this->validate([
             'name' => 'required|string',

@@ -18,17 +18,17 @@ class DuplicateExpenseList extends ModalComponent
 
     public $expenseList;
 
-    public function mount(int $expenseListId)
+    public function mount(int $expenseListId): void
     {
         $this->expenseList = ExpenseList::findOrFail($expenseListId);
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('livewire.expense-list.duplicate-expense-list');
     }
 
-    public function duplicateExpenseList()
+    public function duplicateExpenseList(): void
     {
         $this->validate([
             'name' => 'required|string',
@@ -42,7 +42,7 @@ class DuplicateExpenseList extends ModalComponent
                 'house_id' => auth()->user()->house_id,
             ]);
 
-            $this->expenseList->expenses->each(function ($expense) use ($expenseList) {
+            $this->expenseList->expenses->each(function ($expense) use ($expenseList): void {
                 Expense::create([
                     'name' => $expense->name,
                     'value' => $expense->value,

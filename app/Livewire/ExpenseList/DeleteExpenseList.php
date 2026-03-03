@@ -16,17 +16,17 @@ class DeleteExpenseList extends ModalComponent
     #[Locked]
     public ExpenseList $expenseList;
 
-    public function mount(int $expenseListId)
+    public function mount(int $expenseListId): void
     {
         $this->expenseList = ExpenseList::findOrFail($expenseListId);
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('livewire.expense-list.delete-expense-list');
     }
 
-    public function deleteExpenseList()
+    public function deleteExpenseList(): void
     {
         $expenseList = ExpenseList::find($this->expenseList->id);
 

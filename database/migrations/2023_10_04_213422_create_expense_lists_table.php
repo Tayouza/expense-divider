@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('expense_lists', function (Blueprint $table) {
+        Schema::create('expense_lists', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
             $table->foreignIdFor(House::class);
