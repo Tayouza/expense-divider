@@ -7,11 +7,11 @@ namespace App\Livewire\ExpenseList;
 use App\Models\ExpenseList;
 use Livewire\Attributes\Locked;
 use LivewireUI\Modal\ModalComponent;
-use WireUi\Traits\Actions;
+use WireUi\Traits\WireUiActions;
 
 class RenameExpenseList extends ModalComponent
 {
-    use Actions;
+    use WireUiActions;
 
     #[Locked]
     public ExpenseList $expenseList;

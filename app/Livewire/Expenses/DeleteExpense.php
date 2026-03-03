@@ -7,11 +7,11 @@ namespace App\Livewire\Expenses;
 use App\Models\Expense;
 use Livewire\Attributes\Locked;
 use LivewireUI\Modal\ModalComponent;
-use WireUi\Traits\Actions;
+use WireUi\Traits\WireUiActions;
 
 class DeleteExpense extends ModalComponent
 {
-    use Actions;
+    use WireUiActions;
 
     #[Locked]
     public Expense $expense;

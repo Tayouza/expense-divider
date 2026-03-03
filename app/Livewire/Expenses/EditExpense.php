@@ -9,11 +9,11 @@ use App\Models\Expense;
 use App\Models\User;
 use Livewire\Attributes\Locked;
 use LivewireUI\Modal\ModalComponent;
-use WireUi\Traits\Actions;
+use WireUi\Traits\WireUiActions;
 
 class EditExpense extends ModalComponent
 {
-    use Actions;
+    use WireUiActions;
 
     #[Locked]
     public Expense $expense;

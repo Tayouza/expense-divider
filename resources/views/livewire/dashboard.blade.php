@@ -13,7 +13,7 @@
                         <div class="flex gap-1 items-center" x-data="{ show: true }">
                             <h2 class="text-3xl font-bold pb-2">{{ $house->name }}</h2>
                             <em class="opacity-50 text-base italic" x-show="show">#{{ $house->code }}</em>
-                            <x-icon name="eye-off" class="w-5 h-5 opacity-50 cursor-pointer" x-on:click="show = ! show"
+                            <x-icon name="eye-slash" class="w-5 h-5 opacity-50 cursor-pointer" x-on:click="show = ! show"
                                 data-te-toggle="tooltip" title="{{ __('Hide house code') }}" x-show="show" />
                             <x-icon name="eye" class="w-5 h-5 opacity-50 cursor-pointer" x-on:click="show = ! show"
                                 data-te-toggle="tooltip" title="{{ __('Show house code') }}" x-show="! show" />

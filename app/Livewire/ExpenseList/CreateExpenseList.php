@@ -6,11 +6,11 @@ namespace App\Livewire\ExpenseList;
 
 use App\Models\ExpenseList;
 use LivewireUI\Modal\ModalComponent;
-use WireUi\Traits\Actions;
+use WireUi\Traits\WireUiActions;
 
 class CreateExpenseList extends ModalComponent
 {
-    use Actions;
+    use WireUiActions;
 
     public $name;
 

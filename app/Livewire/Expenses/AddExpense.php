@@ -9,11 +9,11 @@ use App\Models\User;
 use Carbon\Carbon;
 use Livewire\Attributes\Locked;
 use LivewireUI\Modal\ModalComponent;
-use WireUi\Traits\Actions;
+use WireUi\Traits\WireUiActions;
 
 class AddExpense extends ModalComponent
 {
-    use Actions;
+    use WireUiActions;
 
     #[Locked]
     public int $expenseListId;

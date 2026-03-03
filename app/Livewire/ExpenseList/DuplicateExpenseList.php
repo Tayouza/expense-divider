@@ -8,11 +8,11 @@ use App\Models\Expense;
 use App\Models\ExpenseList;
 use Illuminate\Support\Facades\DB;
 use LivewireUI\Modal\ModalComponent;
-use WireUi\Traits\Actions;
+use WireUi\Traits\WireUiActions;
 
 class DuplicateExpenseList extends ModalComponent
 {
-    use Actions;
+    use WireUiActions;
 
     public $name;
 
