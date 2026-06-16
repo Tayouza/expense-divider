@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\ExpenseList;
 
+use App\Enums\ExpenseStatus;
 use App\Models\Expense;
 use App\Models\ExpenseList;
 use Illuminate\Support\Facades\DB;
@@ -48,7 +49,7 @@ class DuplicateExpenseList extends ModalComponent
                     'value' => $expense->value,
                     'user_id' => $expense->user_id,
                     'duedate' => $expense->duedate->addMonth(),
-                    'status' => $expense->status,
+                    'status' => ExpenseStatus::NEW,
                     'expense_list_id' => $expenseList->id,
                 ]);
             });
